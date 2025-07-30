@@ -1,0 +1,17 @@
+# .gitignore
+
+# Node
+node_modules/
+.next/
+.env.local
+
+# Go
+vendor/
+*.exe
+*.test
+*.out
+.env
+
+# IDEs
+.vscode/
+.idea/
