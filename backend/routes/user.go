@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/jordan-julio/jj-project/backend/controllers"
+	"jjproject.local/backend/controllers"
 
 	"github.com/gin-gonic/gin"
 )

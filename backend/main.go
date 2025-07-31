@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"github.com/jordan-julio/jj-project/backend/config"
-	"github.com/jordan-julio/jj-project/backend/routes"
+	"jjproject.local/backend/config"
+	"jjproject.local/backend/routes"
 )
 
 func main() {
