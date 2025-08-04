@@ -1,6 +1,19 @@
+'use client';
+import axios from "axios";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // This effect runs once when the component mounts
+    console.log("Home component mounted");
+    axios.get("http://localhost:8000/api/health").then((response) => {
+      console.log("Health check response:", response.data);
+    });
+    axios.get("http://localhost:8000/").then((response) => {
+      console.log("Users response:", response.data);
+    });
+  }, []);
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">

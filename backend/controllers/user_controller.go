@@ -4,24 +4,20 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"jjproject.local/backend/config"
-	"jjproject.local/backend/models"
 )
 
-func HealthCheck(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"status": "OK",
-	})
+func GetMyProfile(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Get my profile"})
 }
 
-func GetUsers(c *gin.Context) {
-	var users []models.User
-	result := config.DB.Find(&users)
+func UpdateProfile(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Update my profile"})
+}
 
-	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
-		return
-	}
+func ListFreelancers(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "List freelancers"})
+}
 
-	c.JSON(http.StatusOK, users)
+func GetFreelancerByID(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Get freelancer by ID"})
 }
