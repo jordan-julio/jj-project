@@ -88,7 +88,7 @@ const Header = () => {
                 Pro
               </motion.span>
             </div>
-            <div className="text-xs text-gray-500 font-medium">Indonesia's Premier Freelance Platform</div>
+            <div className="text-xs text-gray-500 font-medium">Indonesia&apos;s Premier Freelance Platform</div>
           </div>
         </motion.div>
         
@@ -202,7 +202,7 @@ const HeroSection = () => {
               className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
               variants={fadeInUp}
             >
-              Indonesia's Most
+              Indonesia&apos;s Most
               <motion.span 
                 className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
                 initial={{ backgroundPosition: '0% 50%' }}
@@ -577,7 +577,7 @@ const Footer = () => {
               </motion.div>
               <div>
                 <span className="text-2xl font-bold text-white">KerjaKita</span>
-                <div className="text-xs text-gray-500">Indonesia's Premier Freelance Platform</div>
+                <div className="text-xs text-gray-500">Indonesia&apos;s Premier Freelance Platform</div>
               </div>
             </motion.div>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
@@ -708,7 +708,7 @@ const SolutionsSection = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Whether you're a growing startup, established business, or freelance professional, 
+            Whether you&apos;re a growing startup, established business, or freelance professional, 
             KerjaKita provides tailored solutions for the Indonesian market.
           </p>
         </motion.div>

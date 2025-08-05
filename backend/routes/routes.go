@@ -60,8 +60,8 @@ func RegisterRoutes(r *gin.Engine) {
 	}
 
 	// Admin routes (optional for future)
-	admin := api.Group("/admin")
-	admin.Use(middleware.AdminMiddleware())
+	admin := r.Group("/admin")
+	admin.Use(middleware.AuthMiddleware(), middleware.AdminMiddleware())
 	{
 		admin.GET("/jobs", controllers.AdminListJobs)
 		admin.DELETE("/freelancers/:id", controllers.AdminDeleteFreelancer)

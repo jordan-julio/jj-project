@@ -8,12 +8,20 @@ import (
 
 func AdminMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		role, exists := c.Get("role")
-		if !exists || role != "admin" {
+		roleVal, exists := c.Get("role")
+		if !exists {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Missing role in token"})
+			c.Abort()
+			return
+		}
+
+		role, ok := roleVal.(string)
+		if !ok || role != "admin" {
 			c.JSON(http.StatusForbidden, gin.H{"error": "Admin access required"})
 			c.Abort()
 			return
 		}
+
 		c.Next()
 	}
 }
