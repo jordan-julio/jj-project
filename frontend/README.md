@@ -48,3 +48,87 @@ useEffect(() => {
     });
 }, []);
 ```
+
+## USER ROLES
+'freelancer' | 'client' stored in raw_user_meta_data
+Freelancers: User who accepts projects/tasks from clients
+Clients: User who creates the projects/tasks for freelancers.
+
+### Database Tables
+1. Users table (can create later for now depend on one-time login using supabase auth)
+2. Projects table 
+id UUID (PK)
+title TEXT
+description TEXT
+budget_min NUMERIC
+budget_max NUMERIC
+client_id UUID (FK to users)
+category TEXT
+status TEXT -- 'open', 'in_progress', 'completed', 'cancelled'
+created_at TIMESTAMP
+
+3. project_applications
+id UUID (PK)
+freelancer_id UUID (FK to users)
+project_id UUID (FK to projects)
+cover_letter TEXT
+status TEXT -- 'pending', 'accepted', 'rejected', 'withdrawn'
+submitted_at TIMESTAMP
+
+4. contracts
+id UUID (PK)
+project_id UUID (FK to projects)
+freelancer_id UUID (FK to users)
+client_id UUID (FK to users)
+status TEXT -- 'active', 'completed', 'disputed'
+agreed_price NUMERIC
+start_date TIMESTAMP
+end_date TIMESTAMP
+
+5. milestones
+id UUID (PK)
+contract_id UUID (FK to contracts)
+title TEXT
+description TEXT
+amount NUMERIC
+status TEXT -- 'pending', 'in_review', 'released', 'disputed'
+due_date TIMESTAMP
+
+6. escrow payments
+id UUID (PK)
+contract_id UUID
+milestone_id UUID (nullable)
+status TEXT -- 'funded', 'released', 'refunded'
+amount NUMERIC
+payment_provider TEXT -- 'xendit' | 'midtrans'
+payment_id TEXT -- external payment ref
+created_at TIMESTAMP
+
+7. reviews
+id UUID (PK)
+contract_id UUID
+reviewer_id UUID
+reviewee_id UUID
+rating INTEGER -- 1–5
+comment TEXT
+created_at TIMESTAMP
+
+8. categories (Organize projects and freelancer skills. Used for filters/search.)
+id UUID (PK)
+name TEXT
+description TEXT
+
+## Add Chat System (not high priority)
+Use Liveblocks Chat or Pusher Channels
+Store only lightweight summaries in Supabase
+Optional: Store full chat in object storage (JSON blobs) if needed later
+
+## High Priority Features
+1. Users can login
+2. Clients can post projects/tasks
+3. Freelancers can offer to take them
+4. Payment is decided initially, money paid by client but on hold
+5. If both party agrees, then project is now taken by the freelancer, freelancer stopped being able to take more projects.
+6. Add Progress and levels completed on project/tasks. Once finish and both parties are satisfied, payment goes through.
+7. Posting a job take 2.5%-5% OR fixed amount depends
+8. Taking a job take 2.5%-5% once payment goes through OR fixed amount taken
